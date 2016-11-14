@@ -1,0 +1,9 @@
+// http://localhost:8082/picture
+// header:  Content-Type:application/json
+
+{  "label" : "third picture",
+  "accessType" : "ALL",
+  "status" : "ACTIVE",
+  "showings": 0,
+  "gallery" : "http://localhost:8082/gallery/58288d7b5c730c2808672b05"
+}

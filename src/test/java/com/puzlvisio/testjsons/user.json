@@ -1,0 +1,25 @@
+{
+  "login": "choodov",
+  "password": "choodov",
+  "email": "test@email.com",
+  "type": "ADMIN",
+  "score": 2456,
+  "status": "ACTIVE",
+  "advInfo": {
+    "totalShowings": 45,
+    "maxPictures": 10,
+    "address": "Kiev, bla-bla street 10/5",
+    "additional": "skype: choodov, phone:+30665656565"
+  },
+  "friends":[{}],
+  "puzzledPictures":[{
+    "picture" : "http://localhost:8082/picture/582891d25c730c2808672b08",
+    "score" : 654654,
+    "moves" : 54,
+    "totalTime" : 98987,
+    "pieces" : 25,
+    "rotate" : true,
+    "twoSides" : false,
+    "secondPicture" : ""
+  }]
+}
