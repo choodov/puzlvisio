@@ -1,7 +1,7 @@
 package com.puzlvisio.utils;
 
-import com.puzlvisio.entity.Gallery;
-import com.puzlvisio.entity.Picture;
+import com.puzlvisio.domain.entities.Gallery;
+import com.puzlvisio.domain.entities.Picture;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
