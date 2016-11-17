@@ -24,6 +24,10 @@ public class ImageUtil {
 		return new File(getPathToImage(picture.getGallery()) + picture.getId() + EXT_JPG);
 	}
 
+	public File getGalleryImage(Gallery gallery) {
+		return new File(getPathToImage(gallery) + gallery.getName() + EXT_JPG);
+	}
+
 	public void saveImage(MultipartFile file, Picture picture) {
 
 		File rootFolder = new File(getPathToImage(picture.getGallery()));
