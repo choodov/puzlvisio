@@ -1,7 +1,6 @@
-package com.puzlvisio.entity;
+package com.puzlvisio.domain.entities;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
