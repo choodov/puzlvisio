@@ -1,6 +1,6 @@
 package com.puzlvisio.repository;
 
-import com.puzlvisio.entity.Gallery;
+import com.puzlvisio.domain.entities.Gallery;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
