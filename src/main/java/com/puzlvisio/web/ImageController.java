@@ -1,5 +1,6 @@
 package com.puzlvisio.web;
 
+import com.puzlvisio.domain.entities.Picture;
 import com.puzlvisio.service.GalleryService;
 import com.puzlvisio.service.PictureService;
 import com.puzlvisio.utils.ImageUtil;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -56,5 +58,20 @@ public class ImageController {
 		OutputStream osP = response.getOutputStream();
 		ImageIO.write(imgP, JPG, osP);
 		osP.close();
+	}
+
+	@RequestMapping(value = "/picture/{pictureId}/image", method = RequestMethod.POST)
+	public void savePictureImage(@PathVariable String pictureId,
+								 @RequestParam("file") MultipartFile file,
+								 HttpServletRequest request,
+								HttpServletResponse response) throws IOException {
+
+		Picture picture = pictureService.getById(pictureId);
+
+		if(picture != null) {
+			imageUtil.saveImage(file, picture);
+		} else {
+			response.sendError(400, "Cannot find picture with id: " + pictureId);
+		}
 	}
 }

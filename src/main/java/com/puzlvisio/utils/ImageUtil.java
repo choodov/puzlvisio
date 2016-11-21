@@ -35,7 +35,7 @@ public class ImageUtil {
 		if (!file.isEmpty()) {
 			try {
 				BufferedOutputStream stream = new BufferedOutputStream(
-						new FileOutputStream(new File(rootFolder + picture.getId() + EXT_JPG)));
+						new FileOutputStream(new File(rootFolder + File.separator + picture.getId() + EXT_JPG)));
 				FileCopyUtils.copy(file.getInputStream(), stream);
 				stream.close();
 			}
