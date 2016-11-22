@@ -6,10 +6,7 @@ import com.puzlvisio.service.PictureService;
 import com.puzlvisio.utils.ImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
@@ -73,5 +70,17 @@ public class ImageController {
 		} else {
 			response.sendError(400, "Cannot find picture with id: " + pictureId);
 		}
+	}
+
+	@RequestMapping(value = "/picture/test", method = RequestMethod.POST)
+	public void	testRest(
+						@RequestPart("json") String json,
+						@RequestPart("file") MultipartFile file,
+						HttpServletRequest request,
+						HttpServletResponse response) {
+
+		System.out.println("Test REST. File: " + file.getOriginalFilename());
+		System.out.println("Test REST. JSON: " + json);
+
 	}
 }
