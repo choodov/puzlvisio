@@ -1,2 +1,2 @@
-# puzvisio
-puzzle generator
+# puzlvisio
+puzzle game by Chudov Aleksandr
