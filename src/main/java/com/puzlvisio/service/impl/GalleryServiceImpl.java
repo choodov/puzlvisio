@@ -6,6 +6,8 @@ import com.puzlvisio.service.GalleryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by Chudov A.V. on 11/17/2016.
  */
@@ -18,5 +20,10 @@ public class GalleryServiceImpl implements GalleryService {
 	@Override
 	public Gallery getById(String Id) {
 		return galleryRepository.findOne(Id);
+	}
+
+	@Override
+	public List<Gallery> getGalleries() {
+		return galleryRepository.findAll();
 	}
 }
