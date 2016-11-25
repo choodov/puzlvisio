@@ -51,7 +51,7 @@ public class ImageUtil {
 		return mainDir + gallery.getType() + File.separator + gallery.getName() + File.separator;
 	}
 
-	public void getImage(HttpServletResponse response, BufferedImage imgP) throws IOException {
+	public void setImageToResponse(HttpServletResponse response, BufferedImage imgP) throws IOException {
 		response.setContentType(CONTENT_TYPE);
 		OutputStream osP = response.getOutputStream();
 		ImageIO.write(imgP, EXT_JPG, osP);
