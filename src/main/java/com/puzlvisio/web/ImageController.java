@@ -25,7 +25,7 @@ public class ImageController {
 	@Autowired
 	private PictureService pictureService;
 
-	@RequestMapping(value = "/picture/{pictureId}/image", method = RequestMethod.GET)
+	@GetMapping("/picture/{pictureId}/image")
 	public void getPictureImage(@PathVariable String pictureId, HttpServletRequest request,
 						HttpServletResponse response) {
 
@@ -38,7 +38,7 @@ public class ImageController {
 		}
 	}
 
-	@RequestMapping(value = "/picture/{pictureId}/image", method = RequestMethod.POST)
+	@PostMapping("/picture/{pictureId}/image")
 	public void savePictureImage(@PathVariable String pictureId,
 								 @RequestParam("file") MultipartFile file,
 								 HttpServletRequest request,
@@ -53,12 +53,10 @@ public class ImageController {
 		}
 	}
 
-	@RequestMapping(value = "/picture/test", method = RequestMethod.POST)
+	@PostMapping("/picture/test")
 	public void	testRest(
 						@RequestPart("json") String json,
-						@RequestPart("file") MultipartFile file,
-						HttpServletRequest request,
-						HttpServletResponse response) {
+						@RequestPart("file") MultipartFile file) {
 
 		System.out.println("Test REST. File: " + file.getOriginalFilename());
 		System.out.println("Test REST. JSON: " + json);

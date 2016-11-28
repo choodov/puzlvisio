@@ -26,4 +26,9 @@ public class GalleryServiceImpl implements GalleryService {
 	public List<Gallery> getGalleries() {
 		return galleryRepository.findAll();
 	}
+
+	@Override
+	public Gallery createGallery(Gallery gallery){
+		return galleryRepository.save(gallery);
+	}
 }

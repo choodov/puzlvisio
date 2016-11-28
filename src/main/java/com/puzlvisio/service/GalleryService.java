@@ -12,4 +12,6 @@ public interface GalleryService {
 	Gallery getById(String Id);
 
 	List<Gallery> getGalleries();
+
+	Gallery createGallery(Gallery gallery);
 }

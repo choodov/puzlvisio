@@ -8,12 +8,13 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.hateoas.*;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.*;
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,7 +25,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
  * Created by Chudov A.V. on 11/24/2016.
  */
 @RestController
-@RequestMapping(value = "/gallery", produces = "application/hal+json")
+@RequestMapping(value = "/gallery"/*, produces = "application/hal+json"*/)
 @ExposesResourceFor(Gallery.class)
 public class GalleryController {
 
@@ -42,14 +43,24 @@ public class GalleryController {
 		return galleryToResource(galleryService.getGalleries());
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
+	public void saveGallerry(/*@RequestPart("json") */@RequestBody Gallery gallery
+							/*, @RequestPart("file") MultipartFile file*/) {
+
+//		if (!file.isEmpty()) {
+//			imageUtil.saveGallery(file, gallery);
+			galleryService.createGallery(gallery);
+//		}
+	}
+
+	@GetMapping("/{id}")
 	public Resource<Gallery> getGallery(@PathVariable String id) {
 
 		return galleryToResource(galleryService.getById(id));
 
 	}
 
-	@RequestMapping(value = "/{Id}/image", method = RequestMethod.GET)
+	@GetMapping("/{Id}/image")
 	public ResponseEntity<InputStreamResource> getGalleryImage(@PathVariable String Id) {
 
 		File file = imageUtil.getGalleryImage(galleryService.getById(Id));

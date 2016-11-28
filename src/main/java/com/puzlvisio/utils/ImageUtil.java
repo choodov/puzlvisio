@@ -33,15 +33,21 @@ public class ImageUtil {
 	}
 
 	public void saveImage(MultipartFile file, Picture picture) {
-
-		File rootFolder = new File(getPathToImage(picture.getGallery()));
-
 		if (!file.isEmpty()) {
-			try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(
-					new File(rootFolder + File.separator + picture.getId() + EXT_JPG)))) {
-				FileCopyUtils.copy(file.getInputStream(), stream);
+			try (BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(getImage(picture)))) {
+				FileCopyUtils.copy(file.getInputStream(), outputStream);
 			}
 			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void	saveGallery(MultipartFile file, Gallery gallery){
+		if (!file.isEmpty()) {
+			try (BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(getGalleryImage(gallery)))){
+				FileCopyUtils.copy(file.getInputStream(), outputStream);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
