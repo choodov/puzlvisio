@@ -1,5 +1,6 @@
 package com.puzlvisio.domain.entities;
 
+import com.puzlvisio.domain.enums.FriendsStatusEnum;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,6 +16,6 @@ public class Friend {
 
 	@DBRef
 	private User user;
-	private String acceptStatus;
+	private FriendsStatusEnum acceptStatus;
 
 }

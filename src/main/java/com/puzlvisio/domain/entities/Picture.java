@@ -1,5 +1,7 @@
 package com.puzlvisio.domain.entities;
 
+import com.puzlvisio.domain.enums.PictureAccessType;
+import com.puzlvisio.domain.enums.StatusEnum;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
@@ -17,9 +19,9 @@ public class Picture {
 	@Id
 	private String id;
 	private String label;
-	private String status;
+	private StatusEnum status;
 	private long showings;
-	private String accessType;
+	private PictureAccessType accessType;
 	private TS ts;
 	@DBRef
 	private Gallery gallery;

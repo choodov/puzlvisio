@@ -1,5 +1,7 @@
 package com.puzlvisio.domain.entities;
 
+import com.puzlvisio.domain.enums.StatusEnum;
+import com.puzlvisio.domain.enums.UserTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
@@ -19,9 +21,9 @@ public class User {
 	private String login;
 	private String password;
 	private String email;
-	private String type;
+	private UserTypeEnum type;
 	private long score;
-	private String status;
+	private StatusEnum status;
 	private TS ts;
 	private AdvInfo advInfo;
 	private List<Friend> friends;

@@ -1,5 +1,7 @@
 package com.puzlvisio.domain.entities;
 
+import com.puzlvisio.domain.enums.GalleryTypeEnum;
+import com.puzlvisio.domain.enums.StatusEnum;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,8 +19,8 @@ public class Gallery {
 
 	@Id private String id;
 	private String name;
-	private String type;
-	private String status;
+	private GalleryTypeEnum type;
+	private StatusEnum status;
 	private long amountOfPics;
 
 }
