@@ -33,20 +33,19 @@ public class ImageUtil {
 	}
 
 	public void saveImage(MultipartFile file, Picture picture) {
-		if (!file.isEmpty()) {
-			try (BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(getImage(picture)))) {
-				FileCopyUtils.copy(file.getInputStream(), outputStream);
-			}
-			catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+		saveFile(file, getImage(picture));
 	}
 
 	public void	saveGallery(MultipartFile file, Gallery gallery){
-		if (!file.isEmpty()) {
-			try (BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(getGalleryImage(gallery)))){
-				FileCopyUtils.copy(file.getInputStream(), outputStream);
+		if(createGalleryDir(gallery)){
+			saveFile(file, getGalleryImage(gallery));
+		}
+	}
+
+	private void saveFile(MultipartFile inputFile, File outputFile) {
+		if (!inputFile.isEmpty()) {
+			try (BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(outputFile))){
+				FileCopyUtils.copy(inputFile.getInputStream(), outputStream);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -62,5 +61,10 @@ public class ImageUtil {
 		OutputStream osP = response.getOutputStream();
 		ImageIO.write(imgP, EXT_JPG, osP);
 		osP.close();
+	}
+
+	public boolean createGalleryDir(Gallery gallery) {
+		File myPath = new File(getPathToImage(gallery));
+		return myPath.mkdir();
 	}
 }
