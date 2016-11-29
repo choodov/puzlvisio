@@ -1,5 +1,6 @@
 package com.puzlvisio.web;
 
+import com.google.gson.Gson;
 import com.puzlvisio.domain.entities.Gallery;
 import com.puzlvisio.service.GalleryService;
 import com.puzlvisio.utils.ImageUtil;
@@ -8,13 +9,10 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.hateoas.*;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
-import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,14 +41,16 @@ public class GalleryController {
 		return galleryToResource(galleryService.getGalleries());
 	}
 
-	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public void saveGallerry(/*@RequestPart("json") */@RequestBody Gallery gallery
-							/*, @RequestPart("file") MultipartFile file*/) {
+	@PostMapping
+	public void saveGallerry(@RequestPart("json") String galleryJson,
+							 @RequestPart("file") MultipartFile file) {
 
-//		if (!file.isEmpty()) {
-//			imageUtil.saveGallery(file, gallery);
+		Gson gson = new Gson();
+		Gallery gallery = gson.fromJson(galleryJson, Gallery.class);
+		if (!file.isEmpty()) {
+			imageUtil.saveGallery(file, gallery);
 			galleryService.createGallery(gallery);
-//		}
+		}
 	}
 
 	@GetMapping("/{id}")
@@ -60,10 +60,10 @@ public class GalleryController {
 
 	}
 
-	@GetMapping("/{Id}/image")
-	public ResponseEntity<InputStreamResource> getGalleryImage(@PathVariable String Id) {
+	@GetMapping("/{id}/image")
+	public ResponseEntity<InputStreamResource> getGalleryImage(@PathVariable String id) {
 
-		File file = imageUtil.getGalleryImage(galleryService.getById(Id));
+		File file = imageUtil.getGalleryImage(galleryService.getById(id));
 
 		InputStream inputStream = null;
 		try {
@@ -79,6 +79,7 @@ public class GalleryController {
 	}
 
 	private Resources<Resource<Gallery>> galleryToResource(List<Gallery> galleries) {
+		//TODO: doesn't add Id to self links. Why?
 		Link selfLink = linkTo(methodOn(GalleryController.class).getGalleries()).withSelfRel();
 
 		List<Resource<Gallery>> galleryResources =

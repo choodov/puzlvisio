@@ -52,14 +52,4 @@ public class ImageController {
 			response.sendError(400, "Cannot find picture with id: " + pictureId);
 		}
 	}
-
-	@PostMapping("/picture/test")
-	public void	testRest(
-						@RequestPart("json") String json,
-						@RequestPart("file") MultipartFile file) {
-
-		System.out.println("Test REST. File: " + file.getOriginalFilename());
-		System.out.println("Test REST. JSON: " + json);
-
-	}
 }

@@ -38,4 +38,5 @@ dependencies {
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
+	compile group: 'com.google.code.gson', name: 'gson', version: '1.7.2'
 }
