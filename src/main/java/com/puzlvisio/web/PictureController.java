@@ -50,9 +50,10 @@ public class PictureController {
 							 @RequestPart("file") MultipartFile file) {
 		Gson gson = new Gson();
 		Picture picture = gson.fromJson(pictureJson, Picture.class);
+		picture.setGallery(galleryService.getById(picture.getGallery().getId()));
 		if (!file.isEmpty()) {
-			imageUtil.savePictureImage(file, picture);
-			pictureService.createPicture(picture);
+			Picture savedPicture = pictureService.createPicture(picture);
+			imageUtil.savePictureImage(file, savedPicture);
 		}
 	}
 
