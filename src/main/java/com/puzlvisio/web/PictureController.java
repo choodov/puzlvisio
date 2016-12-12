@@ -97,6 +97,7 @@ public class PictureController {
 	private Resource<Picture> pictureToResource(Picture picture) {
 		Link selfLink = linkTo(methodOn(PictureController.class).getPicture(picture.getId())).withSelfRel();
 		Link imageLink = linkTo(methodOn(PictureController.class).getPictureImage(picture.getId())).withRel("image");
-		return new Resource<>(picture, selfLink, imageLink);
+		Link galleryLink = linkTo(methodOn(GalleryController.class).getGallery(picture.getGallery().getId())).withRel("gallery");
+		return new Resource<>(picture, selfLink, imageLink, galleryLink);
 	}
 }
