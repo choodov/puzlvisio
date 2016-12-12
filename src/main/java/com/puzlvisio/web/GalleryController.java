@@ -23,7 +23,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
  * Created by Chudov A.V. on 11/24/2016.
  */
 @RestController
-@RequestMapping(value = "/gallery"/*, produces = "application/hal+json"*/)
+@RequestMapping(value = "/galleries")
 @ExposesResourceFor(Gallery.class)
 public class GalleryController {
 
@@ -53,14 +53,14 @@ public class GalleryController {
 		}
 	}
 
-	@GetMapping("/{id}")
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public Resource<Gallery> getGallery(@PathVariable String id) {
 
 		return galleryToResource(galleryService.getById(id));
 
 	}
 
-	@GetMapping("/{id}/image")
+	@RequestMapping(value = "/{id}/image", method = RequestMethod.GET)
 	public ResponseEntity<InputStreamResource> getGalleryImage(@PathVariable String id) {
 
 		File file = imageUtil.getGalleryImage(galleryService.getById(id));
@@ -79,11 +79,10 @@ public class GalleryController {
 	}
 
 	private Resources<Resource<Gallery>> galleryToResource(List<Gallery> galleries) {
-		//TODO: doesn't add Id to self links. Why?
 		Link selfLink = linkTo(methodOn(GalleryController.class).getGalleries()).withSelfRel();
 
 		List<Resource<Gallery>> galleryResources =
-				galleries.stream().map(gallery -> galleryToResource(gallery)).collect(Collectors.toList());
+				galleries.stream().map(this::galleryToResource).collect(Collectors.toList());
 
 		return new Resources<>(galleryResources, selfLink);
 	}
