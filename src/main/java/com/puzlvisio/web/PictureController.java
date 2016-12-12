@@ -2,6 +2,7 @@ package com.puzlvisio.web;
 
 import com.google.gson.Gson;
 import com.puzlvisio.domain.entities.Picture;
+import com.puzlvisio.service.GalleryService;
 import com.puzlvisio.service.PictureService;
 import com.puzlvisio.utils.ImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,9 @@ public class PictureController {
 	private PictureService pictureService;
 
 	@Autowired
+	private GalleryService galleryService;
+
+	@Autowired
 	EntityLinks entityLinks;
 
 	@GetMapping
@@ -50,6 +54,11 @@ public class PictureController {
 			imageUtil.savePictureImage(file, picture);
 			pictureService.createPicture(picture);
 		}
+	}
+
+	@RequestMapping(value = "/gallery/{galleryId}")
+	public Resources<Resource<Picture>> getPicturesForGallery(@PathVariable String galleryId) {
+		return pictureToResource(pictureService.getPicturesForGallery(galleryService.getById(galleryId)));
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)

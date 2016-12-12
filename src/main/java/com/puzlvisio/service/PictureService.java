@@ -1,5 +1,6 @@
 package com.puzlvisio.service;
 
+import com.puzlvisio.domain.entities.Gallery;
 import com.puzlvisio.domain.entities.Picture;
 
 import java.util.List;
@@ -12,5 +13,8 @@ public interface PictureService {
 
 	List<Picture> getPictures();
 
+	List<Picture> getPicturesForGallery(Gallery gallery);
+
 	Picture createPicture(Picture picture);
+
 }

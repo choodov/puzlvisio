@@ -1,5 +1,6 @@
 package com.puzlvisio.service.impl;
 
+import com.puzlvisio.domain.entities.Gallery;
 import com.puzlvisio.domain.entities.Picture;
 import com.puzlvisio.repository.PictureRepository;
 import com.puzlvisio.service.PictureService;
@@ -25,6 +26,11 @@ public class PictureServiceImpl implements PictureService{
 	@Override
 	public List<Picture> getPictures() {
 		return pictureRepository.findAll();
+	}
+
+	@Override
+	public List<Picture> getPicturesForGallery(Gallery gallery) {
+		return pictureRepository.findByGallery(gallery);
 	}
 
 	@Override

@@ -88,8 +88,9 @@ public class GalleryController {
 	private Resource<Gallery> galleryToResource(Gallery gallery) {
 		Link selfLink = linkTo(methodOn(GalleryController.class).getGallery(gallery.getId())).withSelfRel();
 		Link imageLink = linkTo(methodOn(GalleryController.class).getGalleryImage(gallery.getId())).withRel("image");
+		Link picturesLink = linkTo(methodOn(PictureController.class).getPicturesForGallery(gallery.getId())).withRel("pictures");
 //		Link entityLinksExample = entityLinks.linkToCollectionResource(SomeClass.class).withRel("all-entities");
-		return new Resource<>(gallery, selfLink, imageLink /*, entityLinksExample*/);
+		return new Resource<>(gallery, selfLink, imageLink, picturesLink /*, entityLinksExample*/);
 	}
 
 }
