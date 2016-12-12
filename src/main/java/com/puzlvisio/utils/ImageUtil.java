@@ -22,7 +22,6 @@ public class ImageUtil {
 	private String mainDir;
 
 	private static final String EXT_JPG = ".jpg";
-	private static final String CONTENT_TYPE = "image/jpeg";
 
 	public File getImage(Picture picture) {
 		return new File(getPathToImage(picture.getGallery()) + picture.getId() + EXT_JPG);
@@ -32,7 +31,7 @@ public class ImageUtil {
 		return new File(getPathToImage(gallery) + gallery.getName() + EXT_JPG);
 	}
 
-	public void saveImage(MultipartFile file, Picture picture) {
+	public void savePictureImage(MultipartFile file, Picture picture) {
 		saveFile(file, getImage(picture));
 	}
 
@@ -54,13 +53,6 @@ public class ImageUtil {
 
 	private String getPathToImage(Gallery gallery) {
 		return mainDir + gallery.getType() + File.separator + gallery.getName() + File.separator;
-	}
-
-	public void setImageToResponse(HttpServletResponse response, BufferedImage imgP) throws IOException {
-		response.setContentType(CONTENT_TYPE);
-		OutputStream osP = response.getOutputStream();
-		ImageIO.write(imgP, EXT_JPG, osP);
-		osP.close();
 	}
 
 	public boolean createGalleryDir(Gallery gallery) {

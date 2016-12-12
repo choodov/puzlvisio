@@ -55,9 +55,7 @@ public class GalleryController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public Resource<Gallery> getGallery(@PathVariable String id) {
-
 		return galleryToResource(galleryService.getById(id));
-
 	}
 
 	@RequestMapping(value = "/{id}/image", method = RequestMethod.GET)
