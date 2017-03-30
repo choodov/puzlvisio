@@ -17,6 +17,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "galleries")
 public class Gallery {
 
+	//TODO: add @Entity(noClassnameStored = true), and change @Id from id field to unique field (name for example)
+
 	@Id private String id;
 	private String name;
 	private GalleryTypeEnum type;

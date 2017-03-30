@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:fragment="gameFragment">
+    <div class="row">
+        <div class="col s12 m5 l5">
+            <div class="card main-image-card">
+                <div class="card-image main-image">
+                    <img th:src="@{/pictures/582a15065c730c1064e6c08b/image}" id="image"/>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red" id="mainButton">
+                        <i class="material-icons" id="mainButtonIcon">play_arrow</i>
+                    </a>
+                </div>
+                <div class="card-content">
+                    <div class="row">
+                        <div class="col s12 m6 l3 ">
+                            <h6>Pieces: <span id="rangespan">0</span></h6>
+                        </div>
+                        <div class="col s12 m6 l9">
+                            <input id="range" type="range"/>
+                        </div>
+                    </div>
+
+                    <!--<div class="checkbox">
+                        <button type="button" class="btn btn-default">Choose picture...</button>
+                        <label><input type="checkbox" value="">rotate</label>
+                        <label><input type="checkbox" value="">2 side</label>
+                        <button type="button" class="btn btn-default">second picture...</button>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
