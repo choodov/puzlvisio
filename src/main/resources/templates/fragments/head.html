@@ -5,35 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>puzlvisio.com</title>
 
-    <!-- JQuery 3.1.1-->
-    <link rel="stylesheet" th:href="@{/css/jquery/jquery-ui-1.12.1.css}"/>
-    <script th:src="@{/js/jquery/jquery-3.1.1.js}"></script>
-    <script th:src="@{/js/jquery/jquery-ui-1.12.1.js}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    <link rel="stylesheet" th:href="@{/css/game.css}"/>
 
-    <!-- Material Design Lite-->
-        <!-- To change color pallet visit https://getmdl.io/customize/index.html-->
-    <!--on-line-->
-        <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>-->
-        <!--<link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.green-amber.min.css"/>-->
-        <!--<script defer="defer" src="https://code.getmdl.io/1.2.1/material.min.js"></script>-->
-    <!--off-line-->
-        <link rel="stylesheet" th:href="@{/mdl/material.green-amber.min.css}"/>
-        <script th:src="@{/mdl/material.min.js}"></script>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
-    <style>
-        .demo-card-wide.mdl-card {
-            width: 512px;
-        }
-        .demo-card-wide > .mdl-card__title {
-            color: #fff;
-            height: 176px;
-            background: url('../images/meizu-m3e.jpg') center / cover;
-        }
-        .demo-card-wide > .mdl-card__menu {
-            color: #fff;
-        }
-    </style>
+    <script th:src="@{/js/game.js}"></script>
+    <script th:src="@{/js/puzlvisio.js}"></script>
 
 </head>
 <body>
